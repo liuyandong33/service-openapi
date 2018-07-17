@@ -8,6 +8,7 @@ import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,6 +34,10 @@ public class CustomClientDetailsService implements ClientDetailsService {
         authorizedGrantTypes.add(AUTHORIZATION_CODE);
         baseClientDetails.setAuthorizedGrantTypes(authorizedGrantTypes);
         baseClientDetails.setAccessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS);
+
+        Collection<String> scope = new HashSet<String>();
+        scope.add("all");
+        baseClientDetails.setScope(scope);
 
         Set<String> registeredRedirectUris = new HashSet<String>();
         registeredRedirectUris.add("http://www.baidu.com");
