@@ -1,6 +1,8 @@
 package build.dream.openapi.controllers;
 
+import build.dream.common.api.ApiRest;
 import build.dream.common.utils.ApplicationHandler;
+import build.dream.common.utils.GsonUtils;
 import build.dream.common.utils.WebSecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +26,7 @@ public class LoginController {
         String loginName = requestParameters.get("loginName");
         WebSecurityUtils.authorize(loginName);
 
-        return UUID.randomUUID().toString();
+        return GsonUtils.toJson(new ApiRest());
     }
 
     @RequestMapping(value = "/success")
